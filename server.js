@@ -1,6 +1,8 @@
 import { app } from "./app.js";
 import { connectDB } from "./data/database.js";
 
+// NODE_ENV = Development
+// MONGO_URI = mongodb://127.0.0.1:27017
 // Connecting to database
 connectDB();
 
