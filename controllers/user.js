@@ -3,12 +3,13 @@ import bcrypt from "bcrypt";
 import { sendCookie } from "../utils/features.js";
 import jwt from "jsonwebtoken";
 import ErrorHandler from "../middlewares/error.js";
-
+// FRONTEND_URL= http://localhost:5173
 export const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
     let user = await User.findOne({ email });
+
 
     if (user) return next(new ErrorHandler("User Already Exist", 404));
 
@@ -34,7 +35,8 @@ export const login = async (req, res, next) => {
     if (!isMatch)
       return next(new ErrorHandler("Invalid Email or Password", 404));
     sendCookie(user, res, `Welcome back, ${user.name}`, 200);
-  } catch (error) {
+  }
+   catch (error) {
     next(error);
   }
 };
